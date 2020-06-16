@@ -35,13 +35,10 @@ describe("auth-router.js", () => {
 				.post("/api/auth/register")
 				.send(user);
 
-			console.log("HASH PASSWORD: ", res.body.password);
-			user.password = res.body.password;
 			expect(res.body.username).toBe(user.username);
 		});
 
 		it("login should return status 200", async () => {
-			console.log("USER", user);
 			const res = await request(server)
 				.post("/api/auth/login")
 				.send(user);

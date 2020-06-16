@@ -27,10 +27,6 @@ router.post("/login", async (req, res) => {
 
 	try {
 		const user = await Users.findBy({ username }).first();
-		console.log("FOUND USER PASSWORD", user.password);
-		console.log("BODY PASSWORD", password);
-		console.log("HASHES ARE EQUAL", password === user.password);
-		console.log("BCRYPTJS: ", bcrypt.compareSync(password, user.password));
 
 		if (user && bcrypt.compareSync(password, user.password)) {
 			const token = generateToken(user);
